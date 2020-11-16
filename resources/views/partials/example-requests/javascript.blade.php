@@ -24,7 +24,7 @@ let headers = {
 const body = new FormData();
 @foreach($route['cleanBodyParameters'] as $parameter => $value)
 @foreach( \Knuckles\Scribe\Tools\WritingUtils::getParameterNamesAndValuesForFormData($parameter, $value) as $key => $actualValue)
-body.append('{!! $key !!}', '{!! $actualValue !!}');
+    body.append('{!! $key !!}', '{!! is_object($actualValue) ? '' : $actualValue !!}');
 @endforeach
 @endforeach
 @foreach($route['fileParameters'] as $parameter => $value)

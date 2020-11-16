@@ -9,7 +9,7 @@ curl -X {{$route['methods'][0]}} \
 @if(count($route['fileParameters']))
 @foreach($route['cleanBodyParameters'] as $parameter => $value)
 @foreach( \Knuckles\Scribe\Tools\WritingUtils::getParameterNamesAndValuesForFormData($parameter, $value) as $key => $actualValue)
-    -F "{!! "$key=".$actualValue !!}" \
+    -F "{!! "$key=".is_object($actualValue) ? '' : $actualValue !!}" \
 @endforeach
 @endforeach
 @foreach($route['fileParameters'] as $parameter => $value)
